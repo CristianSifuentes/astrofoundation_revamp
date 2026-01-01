@@ -1,0 +1,166 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import CustomTitle from "../components/CustomTitle.astro";
+
+const title = "Contact — AstroFoundation";
+const description = "A clean, modern contact page with semantic form markup and tasteful UI.";
+---
+
+<MainLayout title={title} description={description}>
+  <section class="section">
+    <div class="container grid grid-2 contact">
+      <div class="stack">
+        <CustomTitle
+          eyebrow="Let’s build"
+          title="Tell me what you’re shipping."
+          subtitle="Share goals, constraints, timeline — and I’ll respond with a clear next step. Simple, fast, and human."
+        />
+
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card__inner">
+              <p class="badge"><span class="mono">↳</span> Typical reply</p>
+              <p class="big">Within 24–48 hours</p>
+              <p class="muted">Include a budget range and we’ll move even faster.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__inner">
+              <p class="badge"><span class="mono">✦</span> Best for</p>
+              <p class="big">Landing pages, docs, portfolios</p>
+              <p class="muted">And product sites that want “app-like” polish.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__inner stack-sm">
+            <p class="badge"><span class="chip" aria-hidden="true"></span> What to include</p>
+            <ul class="list">
+              <li>What is the product / site?</li>
+              <li>Who is it for?</li>
+              <li>What’s the #1 conversion goal?</li>
+              <li>Any inspiration links?</li>
+              <li>Timeline & constraints</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card form">
+        <div class="card__inner">
+          <form method="post" action="#" class="form__grid">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" autocomplete="name" placeholder="Your name" required />
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required />
+            </div>
+
+            <div class="field field--full">
+              <label for="topic">Project type</label>
+              <select id="topic" name="topic">
+                <option>Landing page / marketing</option>
+                <option>Documentation / blog</option>
+                <option>Portfolio</option>
+                <option>Product website</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="field field--full">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="What are we building? What does success look like?" required></textarea>
+              <p class="hint muted">This form is a UI demo. Wire it to your backend, Netlify Forms, or an email service.</p>
+            </div>
+
+            <div class="field field--full actions">
+              <button class="btn btn--primary" type="submit">Send message →</button>
+              <a class="btn btn--ghost" href="/">Back home</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .contact{ align-items: start; }
+  .big{
+    margin: .55rem 0 0;
+    font-weight: 820;
+    letter-spacing: -.02em;
+    font-size: var(--step-1);
+  }
+
+  .list{
+    margin: 0;
+    padding-left: 1.15rem;
+    color: rgba(var(--muted), 1);
+    display: grid;
+    gap: .35rem;
+  }
+
+  .form{
+    position: relative;
+    overflow: hidden;
+  }
+  .form::before{
+    content:"";
+    position: absolute;
+    inset: -35%;
+    background: radial-gradient(50rem 50rem at 30% 20%, rgba(var(--a1), .18), transparent 55%),
+                radial-gradient(40rem 40rem at 85% 60%, rgba(var(--a2), .14), transparent 60%);
+    transform: rotate(-8deg);
+    pointer-events: none;
+  }
+  .form__grid{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+  .field{ display: grid; gap: .5rem; }
+  .field--full{ grid-column: 1 / -1; }
+
+  label{
+    font-weight: 700;
+    letter-spacing: .01em;
+  }
+
+  input, select, textarea{
+    width: 100%;
+    padding: .85rem .95rem;
+    border-radius: var(--r-2);
+    border: 1px solid var(--border-2);
+    background: rgba(var(--surface), .55);
+    color: rgb(var(--text));
+    box-shadow: 0 0 0 0 rgba(var(--a1), 0);
+    transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  }
+
+  input:focus, select:focus, textarea:focus{
+    outline: none;
+    border-color: rgba(var(--a1), .55);
+    box-shadow: 0 0 0 4px rgba(var(--a1), .16);
+  }
+
+  textarea{ resize: vertical; min-height: 140px; }
+
+  .hint{ margin: .5rem 0 0; font-size: var(--step--1); }
+
+  .actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+  }
+
+  @media (max-width: 860px){
+    .form__grid{ grid-template-columns: 1fr; }
+  }
+</style>

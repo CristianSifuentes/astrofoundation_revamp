@@ -1,0 +1,73 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const title = "404 — Page not found";
+---
+
+<MainLayout title={title} description="This page does not exist. Let's get you back on track.">
+  <section class="section">
+    <div class="container wrap">
+      <div class="card">
+        <div class="card__inner stack">
+          <p class="badge"><span class="mono">404</span> • Not found</p>
+          <h1 class="h1">This route drifted into deep space.</h1>
+          <p class="muted">
+            The page you’re looking for doesn’t exist (or it moved). Use the links below to navigate back.
+          </p>
+          <div class="cluster">
+            <a class="btn btn--primary" href="/">Go home →</a>
+            <a class="btn btn--ghost" href="/contact">Contact</a>
+          </div>
+
+          <div class="grid grid-2 help">
+            <div class="help__item">
+              <p class="help__k">Quick hint</p>
+              <p class="muted">Check your URL path and file-based routing under <span class="mono">src/pages</span>.</p>
+            </div>
+            <div class="help__item">
+              <p class="help__k">Want a custom 404?</p>
+              <p class="muted">Edit <span class="mono">src/pages/404.astro</span> and match your brand tone.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="orb" aria-hidden="true"></div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .wrap{ position: relative; }
+  .h1{
+    margin: 0;
+    font-size: var(--step-4);
+    line-height: 1.08;
+    letter-spacing: -.04em;
+  }
+  .help{
+    margin-top: var(--space-6);
+  }
+  .help__item{
+    padding: 1rem 1.05rem;
+    border: 1px solid var(--border);
+    border-radius: var(--r-2);
+    background: rgba(255,255,255,.03);
+  }
+  .help__k{ margin: 0; font-weight: 780; }
+  .orb{
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 220px;
+    height: 220px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 30%, rgba(var(--a1), .35), rgba(var(--a2), .18), transparent 65%);
+    filter: blur(2px);
+    opacity: .9;
+    pointer-events: none;
+  }
+  @media (max-width: 860px){
+    .orb{ display: none; }
+  }
+</style>

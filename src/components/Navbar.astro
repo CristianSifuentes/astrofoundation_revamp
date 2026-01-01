@@ -1,0 +1,236 @@
+---
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+
+const pathname = Astro.url?.pathname ?? "/";
+const isActive = (href) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
+---
+
+<header class="site-header" transition:persist>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="bar container">
+    <a class="brand" href="/" aria-label="AstroFoundation — Home" data-astro-history="auto">
+      <span class="mark" aria-hidden="true">
+        <span class="dot"></span>
+        <span class="ring"></span>
+      </span>
+      <span class="word">
+        Astro<span class="accent">Foundation</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      {links.map((l) => (
+        <a
+          class:list={["nav__link", { "is-active": isActive(l.href) }]}
+          href={l.href}
+          data-astro-history="auto"
+        >
+          {l.label}
+        </a>
+      ))}
+      <a class="btn btn--primary nav__cta" href="/contact" data-astro-history="auto">
+        Start a project <span aria-hidden="true">→</span>
+      </a>
+    </nav>
+
+    <!-- Mobile menu: CSS-only using <details> -->
+    <details class="menu" aria-label="Menu">
+      <summary class="menu__btn" aria-label="Open menu">
+        <span class="visually-hidden">Menu</span>
+        <span class="burger" aria-hidden="true"></span>
+      </summary>
+      <div class="menu__panel card" role="dialog" aria-label="Navigation">
+        <div class="card__inner stack-sm">
+          <div class="menu__top">
+            <span class="badge"><span class="pill"></span> Navigation</span>
+            <span class="muted mono">{pathname}</span>
+          </div>
+          <div class="menu__links">
+            {links.map((l) => (
+              <a class:list={["menu__link", { "is-active": isActive(l.href) }]} href={l.href}>
+                {l.label}
+              </a>
+            ))}
+          </div>
+          <a class="btn btn--primary" href="/contact">Start a project →</a>
+          <p class="muted menu__hint">
+            Tip: press <span class="mono">o</span> in <span class="mono">astro dev</span> to open the site.
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</header>
+
+<style>
+  .site-header{
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(180deg, rgba(var(--bg), .72), rgba(var(--bg), .38));
+    border-bottom: 1px solid var(--border);
+  }
+
+  .bar{
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .brand{
+    display: inline-flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .35rem .4rem;
+    border-radius: 999px;
+  }
+
+  .mark{
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+  .dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgb(var(--a1));
+    box-shadow: 0 0 0 6px rgba(var(--a1), .12), 0 0 40px rgba(var(--a1), .35);
+  }
+  .ring{
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.18);
+    background: radial-gradient(circle at 30% 20%, rgba(var(--a2), .28), transparent 55%);
+  }
+
+  .word{ font-weight: 820; letter-spacing: -.02em; }
+  .accent{
+    background: linear-gradient(135deg, rgb(var(--a1)), rgb(var(--a2)), rgb(var(--a3)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-left: .15rem;
+  }
+
+  .nav{
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+  }
+  .nav__link{
+    padding: .5rem .7rem;
+    border-radius: 999px;
+    color: rgba(var(--text), .88);
+  }
+  .nav__link:hover{
+    background: rgba(255,255,255,.05);
+    text-decoration: none;
+  }
+  .nav__link.is-active{
+    background: rgba(var(--a1), .10);
+    border: 1px solid rgba(var(--a1), .22);
+    color: rgb(var(--text));
+  }
+  .nav__cta{ margin-left: .35rem; }
+
+  /* Mobile */
+  .menu{ display: none; position: relative; }
+  .menu__btn{
+    list-style: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(var(--surface), .55);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: var(--shadow-1);
+  }
+  .menu__btn::-webkit-details-marker{ display: none; }
+
+  .burger{
+    width: 18px;
+    height: 2px;
+    background: rgba(var(--text), .9);
+    border-radius: 999px;
+    position: relative;
+  }
+  .burger::before, .burger::after{
+    content:"";
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(var(--text), .9);
+    transition: transform .18s ease, top .18s ease, opacity .18s ease;
+  }
+  .burger::before{ top: -6px; }
+  .burger::after{ top: 6px; }
+
+  details[open] .burger{
+    background: transparent;
+  }
+  details[open] .burger::before{ top: 0; transform: rotate(45deg); }
+  details[open] .burger::after{ top: 0; transform: rotate(-45deg); }
+
+  .menu__panel{
+    position: absolute;
+    right: 0;
+    top: calc(100% + .6rem);
+    width: min(360px, calc(100vw - 2rem));
+  }
+  .menu__top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  .pill{
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(var(--a1), .85);
+    box-shadow: 0 0 0 6px rgba(var(--a1), .12);
+  }
+  .menu__links{
+    display: grid;
+    gap: .4rem;
+    padding: .4rem 0;
+  }
+  .menu__link{
+    padding: .8rem .85rem;
+    border-radius: var(--r-2);
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.03);
+    font-weight: 650;
+  }
+  .menu__link:hover{ text-decoration: none; transform: translateY(-1px); }
+  .menu__link.is-active{
+    border-color: rgba(var(--a1), .35);
+    background: rgba(var(--a1), .10);
+  }
+  .menu__hint{
+    margin: 0;
+    font-size: var(--step--1);
+  }
+
+  @media (max-width: 860px){
+    .nav{ display: none; }
+    .menu{ display: block; }
+  }
+</style>

@@ -1,0 +1,129 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import CustomTitle from "../components/CustomTitle.astro";
+
+const title = "About — AstroFoundation";
+const description =
+  "The design philosophy behind AstroFoundation: semantic HTML, modern CSS, and small, deliberate interactivity.";
+---
+
+<MainLayout title={title} description={description}>
+  <section class="section">
+    <div class="container stack">
+      <CustomTitle
+        eyebrow="Design philosophy"
+        title="A site should feel effortless."
+        subtitle="This starter leans into Astro’s strengths: fast HTML, scoped styles, and optional islands — wrapped in a modern design system."
+      />
+
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="card__inner stack-sm">
+            <h2 class="h2">Principles</h2>
+            <ul class="list">
+              <li><strong>Semantic first:</strong> structure communicates meaning, not just layout.</li>
+              <li><strong>CSS as a system:</strong> tokens + utilities keep you consistent at speed.</li>
+              <li><strong>Interactivity by choice:</strong> islands only when UX truly needs it.</li>
+              <li><strong>Accessibility by default:</strong> focus, contrast, and navigation are non-negotiable.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__inner stack-sm">
+            <h2 class="h2">What to customize next</h2>
+            <div class="steps">
+              <div class="step">
+                <span class="step__n">1</span>
+                <div>
+                  <p class="step__t">Brand tokens</p>
+                  <p class="muted step__d">Tweak accent colors and radii in <span class="mono">global.css</span>.</p>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step__n">2</span>
+                <div>
+                  <p class="step__t">Content sections</p>
+                  <p class="muted step__d">Swap the homepage blocks for your product, portfolio, or docs.</p>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step__n">3</span>
+                <div>
+                  <p class="step__t">Add MDX or content collections</p>
+                  <p class="muted step__d">Perfect for blogs, changelogs, or documentation.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="card">
+        <div class="card__inner quote">
+          <p class="quote__text">
+            “A good UI is not loud — it’s confident. It guides the eye, respects time, and makes the next step obvious.”
+          </p>
+          <p class="muted quote__by">— AstroFoundation baseline</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .h2{
+    margin: 0;
+    font-size: var(--step-2);
+    letter-spacing: -.03em;
+  }
+  .list{
+    margin: 0;
+    padding-left: 1.15rem;
+    color: rgba(var(--muted), 1);
+    display: grid;
+    gap: .55rem;
+  }
+
+  .steps{ display: grid; gap: .75rem; }
+  .step{
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: .85rem;
+    align-items: start;
+    padding: .85rem .9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--r-2);
+    background: rgba(255,255,255,.03);
+  }
+  .step__n{
+    width: 38px; height: 38px;
+    display: grid; place-items: center;
+    border-radius: 999px;
+    font-weight: 850;
+    background: rgba(var(--a1), .14);
+    border: 1px solid rgba(var(--a1), .30);
+  }
+  .step__t{ margin: 0; font-weight: 780; }
+  .step__d{ margin: .2rem 0 0; }
+
+  .quote{
+    position: relative;
+    overflow: hidden;
+  }
+  .quote::before{
+    content:"";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(40rem 40rem at 10% 0%, rgba(var(--a2), .18), transparent 55%);
+    transform: rotate(8deg);
+  }
+  .quote__text{
+    position: relative;
+    margin: 0;
+    font-size: var(--step-2);
+    line-height: 1.2;
+    letter-spacing: -.03em;
+  }
+  .quote__by{ position: relative; margin: .8rem 0 0; }
+</style>

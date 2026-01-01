@@ -1,0 +1,71 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  align?: "left" | "center";
+}
+const { eyebrow = "Astro UI System", title, subtitle, align = "left" } = Astro.props;
+---
+
+<header class:list={["title", `title--${align}`]}>
+  <p class="kicker">
+    <span class="spark" aria-hidden="true"></span>
+    {eyebrow}
+  </p>
+
+  <h1 class="h">
+    <span class="grad">{title}</span>
+  </h1>
+
+  {subtitle && <p class="sub muted">{subtitle}</p>}
+
+  <div class="meta">
+    <span class="badge">
+      <span class="chip" aria-hidden="true"></span> Responsive • Semantic • Fast
+    </span>
+    <span class="muted mono">Astro 5 • 2025 UI</span>
+  </div>
+</header>
+
+<style>
+  .title{ display: grid; gap: .9rem; }
+  .title--center{ text-align: center; justify-items: center; }
+
+  .spark{
+    width: 12px; height: 12px; border-radius: 999px;
+    background: rgb(var(--a1));
+    box-shadow: 0 0 0 7px rgba(var(--a1), .14), 0 0 40px rgba(var(--a2), .25);
+  }
+
+  .h{
+    margin: 0;
+    font-size: var(--step-5);
+    line-height: 1.05;
+    letter-spacing: -.04em;
+  }
+  .grad{
+    background: linear-gradient(135deg, rgb(var(--text)), rgba(var(--text), .78) 35%, rgb(var(--a1)) 70%, rgb(var(--a2)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .sub{
+    margin: 0;
+    font-size: var(--step-1);
+    max-width: 62ch;
+  }
+
+  .meta{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem 1rem;
+    align-items: center;
+  }
+  .chip{
+    width: 10px; height: 10px; border-radius: 999px;
+    background: linear-gradient(135deg, rgb(var(--a1)), rgb(var(--a2)), rgb(var(--a3)));
+    box-shadow: 0 0 0 6px rgba(255,255,255,.06);
+  }
+</style>

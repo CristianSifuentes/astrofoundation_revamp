@@ -1,0 +1,256 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import CustomTitle from "../components/CustomTitle.astro";
+
+const title = "AstroFoundation — Stunning UI, Semantic by Default";
+const description =
+  "A modern Astro starter with a 2025-grade design system: fluid type, CSS Grid, accessible components, and smooth view transitions.";
+---
+
+<MainLayout title={title} description={description}>
+  <section class="hero section">
+    <div class="container hero__grid">
+      <div class="stack">
+        <CustomTitle
+          eyebrow="Astro • UI/UX • 2025"
+          title="Build sites that feel like apps — without the weight."
+          subtitle="A content-first Astro foundation with a polished design system, semantic layout, and view transitions that make navigation feel effortless."
+        />
+
+        <div class="cluster">
+          <a class="btn btn--primary" href="/contact">Start building →</a>
+          <a class="btn btn--ghost" href="/about">See the philosophy</a>
+          <span class="badge"><span class="pulse" aria-hidden="true"></span> Lighthouse-friendly</span>
+        </div>
+
+        <p class="muted hero__note">
+          Powered by Astro layouts, scoped styles, and modern CSS. Add islands only where you need interactivity.
+        </p>
+      </div>
+
+      <div class="card hero__card" aria-label="Design preview card">
+        <div class="card__inner stack-sm">
+          <p class="badge">
+            <span class="chip" aria-hidden="true"></span> Design tokens • Grid • A11y
+          </p>
+
+          <div class="preview">
+            <div class="preview__top">
+              <span class="dot dot--r"></span>
+              <span class="dot dot--y"></span>
+              <span class="dot dot--g"></span>
+              <span class="muted mono">/src</span>
+            </div>
+            <div class="preview__body">
+              <div class="row">
+                <span class="k">layout</span><span class="v">MainLayout.astro</span>
+              </div>
+              <div class="row">
+                <span class="k">nav</span><span class="v">Navbar.astro</span>
+              </div>
+              <div class="row">
+                <span class="k">styles</span><span class="v">global.css</span>
+              </div>
+              <div class="row">
+                <span class="k">transitions</span><span class="v">ClientRouter</span>
+              </div>
+              <div class="row">
+                <span class="k">a11y</span><span class="v">skip-link + focus-visible</span>
+              </div>
+            </div>
+          </div>
+
+          <hr class="hr" />
+
+          <div class="stats grid grid-3">
+            <div class="stat">
+              <p class="stat__k">Performance</p>
+              <p class="stat__v">Fast by design</p>
+            </div>
+            <div class="stat">
+              <p class="stat__k">CSS</p>
+              <p class="stat__v">Scoped + global tokens</p>
+            </div>
+            <div class="stat">
+              <p class="stat__k">Routing</p>
+              <p class="stat__v">Smooth transitions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container stack">
+      <div class="section__head">
+        <p class="kicker"><span class="spark" aria-hidden="true"></span> What you get</p>
+        <h2 class="h2">A polished baseline you can ship from.</h2>
+        <p class="muted">Everything here is plain Astro + CSS. No framework lock-in.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="card__inner stack-sm">
+            <h3 class="h3">Semantic structure</h3>
+            <p class="muted">Layout, header, navigation, main, and footer done the right way — with sensible defaults.</p>
+            <ul class="list">
+              <li>Skip-to-content</li>
+              <li>Accessible focus styles</li>
+              <li>SEO-ready head tags</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__inner stack-sm">
+            <h3 class="h3">Modern CSS system</h3>
+            <p class="muted">Design tokens, fluid typography, and composable utilities for speed and consistency.</p>
+            <ul class="list">
+              <li>Grid + flex primitives</li>
+              <li>Cards, badges, buttons</li>
+              <li>Dark + light via system preference</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__inner stack-sm">
+            <h3 class="h3">View transitions</h3>
+            <p class="muted">Client-side routing where it helps, with reasonable fallback behavior.</p>
+            <ul class="list">
+              <li><span class="mono">ClientRouter</span> enabled</li>
+              <li>Slide transition on main</li>
+              <li>Persisted navbar</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="cta card">
+        <div class="card__inner cta__inner">
+          <div class="stack-sm">
+            <p class="badge"><span class="chip" aria-hidden="true"></span> Ready to customize</p>
+            <h3 class="h2">Turn this into your portfolio, docs, or landing page.</h3>
+            <p class="muted">Add MDX, Tailwind, or a UI framework later — but start from a beautiful, semantic base today.</p>
+          </div>
+          <div class="cluster">
+            <a class="btn btn--primary" href="/contact">Contact →</a>
+            <a class="btn btn--ghost" href="/about">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .hero{ padding-top: clamp(3rem, 7vw, 6rem); }
+  .hero__grid{
+    display: grid;
+    grid-template-columns: 1.25fr .9fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .hero__note{ margin: 0; max-width: 70ch; }
+
+  .hero__card{
+    transform: translateY(6px);
+  }
+
+  .preview{
+    border: 1px solid var(--border);
+    border-radius: var(--r-2);
+    overflow: hidden;
+    background: rgba(0,0,0,.18);
+  }
+  .preview__top{
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    padding: .75rem .9rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,.03);
+  }
+  .dot{ width: 10px; height: 10px; border-radius: 999px; opacity: .9; }
+  .dot--r{ background: #ff5f57; }
+  .dot--y{ background: #febc2e; }
+  .dot--g{ background: #28c840; }
+  .preview__body{
+    padding: 1rem .9rem;
+    display: grid;
+    gap: .55rem;
+  }
+  .row{
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: .9rem;
+    align-items: baseline;
+    font-family: var(--font-mono);
+    font-size: clamp(.86rem, .78rem + .25vw, .95rem);
+  }
+  .k{ color: rgba(var(--muted), 1); }
+  .v{ color: rgba(var(--text), .92); }
+
+  .stats{ gap: var(--space-4); }
+  .stat{
+    padding: .9rem .95rem;
+    border-radius: var(--r-2);
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.03);
+  }
+  .stat__k{ margin: 0; font-size: var(--step--1); color: rgba(var(--muted), 1); }
+  .stat__v{ margin: .25rem 0 0; font-weight: 750; letter-spacing: -.01em; }
+
+  .section__head{ max-width: 70ch; }
+  .spark{
+    width: 10px; height: 10px; border-radius: 999px;
+    background: rgb(var(--a3));
+    box-shadow: 0 0 0 7px rgba(var(--a3), .12);
+  }
+
+  .h2{
+    margin: .5rem 0 0;
+    font-size: var(--step-3);
+    line-height: 1.15;
+    letter-spacing: -.03em;
+  }
+  .h3{
+    margin: 0;
+    font-size: var(--step-1);
+    letter-spacing: -.02em;
+  }
+  .list{
+    margin: 0;
+    padding-left: 1.15rem;
+    color: rgba(var(--muted), 1);
+    display: grid;
+    gap: .25rem;
+  }
+
+  .cta__inner{
+    display: grid;
+    grid-template-columns: 1.4fr .6fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .pulse{
+    width: 10px; height: 10px; border-radius: 999px;
+    background: rgb(var(--a1));
+    box-shadow: 0 0 0 0 rgba(var(--a1), .25);
+    animation: pulse 1.6s ease infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(var(--a1), .22); }
+    70%{ box-shadow: 0 0 0 10px rgba(var(--a1), 0); }
+    100%{ box-shadow: 0 0 0 0 rgba(var(--a1), 0); }
+  }
+
+  @media (max-width: 860px){
+    .hero__grid{ grid-template-columns: 1fr; }
+    .row{ grid-template-columns: 120px 1fr; }
+    .cta__inner{ grid-template-columns: 1fr; }
+  }
+</style>
